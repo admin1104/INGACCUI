@@ -10,6 +10,7 @@
     "node_modules/@webcomponents/webcomponentsjs/**",
     "node_modules/web-animations-js/web-animations-next-lite.min.js",
     "node_modules/ag-grid-community/dist/styles/ag-grid.css",
+    "node_modules/ag-grid-community/**",
     "node_modules/ag-grid-community/dist/styles/ag-theme-balham.css",
     "config.js"
   ],
