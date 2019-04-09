@@ -70,7 +70,7 @@ createAcntresponse(event){
      <div class="card">        
        
         <iron-ajax id="ajaxUser"
-                 url=""
+                 url="http://localhost:8090/ING/api/v1/createAccount"
                  method="post"
                  handle-as="json"
                  content-type="application/json"
