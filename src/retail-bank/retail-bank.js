@@ -116,7 +116,7 @@ class RetailBank extends PolymerElement {
         
         <my-login route="{{route}}" name="mylogin"></my-login>
         <user-details  route="{{route}}" name="userdetails"></user-details>
-        <update-detail  route="{{route}}" name="updatedetail" user-info = "{{userinfo}}"></update-detail>
+        <update-detail  route="{{route}}" name="updatedetail" users = "{{userinfo}}"></update-detail>
         <create-account route="{{route}}" name="createaccount"></create-account>
         <transaction-list route="{{route}}" name="transactionlist"></transaction-list>
         <not-found name="view404"></not-found>

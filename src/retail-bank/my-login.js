@@ -49,10 +49,10 @@ class MyLogin extends PolymerElement {
      let acnt = status.accountNumber;
      let acntHolder= status.accountHolderName;
      let balance= status.balance;
-    
+     sessionStorage.setItem('username',JSON.stringify(this.userinfo));
     if(status==="success"){
-
-      sessionStorage.setItem('username',this.userinfo);
+      
+      
       // this.dispatchEvent(new CustomEvent('userdetails', 
       // {bubbles: true, composed: true, detail: {checkUser: true}}));
       alert('Login successfully' ,"role:",user,"accountNumber:" ,acnt,"Holder:", acntHolder,"balance:",balance);

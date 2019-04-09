@@ -6,7 +6,128 @@ class TransactionList extends PolymerElement{
 
   constructor() {
     super();
-    const rowData = [];
+    const rowData = [
+      {
+        "description": "transctopon 3",
+        "categorySelected": "Travel",
+        "paymentSelected": "Recieve Payment",
+        "amount": "1000",
+        "transdate": "2019-03-23",
+        "id": 2
+      },
+      {
+        "description": "trans 3",
+        "categorySelected": "Loans",
+        "paymentSelected": "Make Payment",
+        "amount": "1000",
+        "transdate": "2019-03-23",
+        "id": 3
+      },
+      {
+        "description": "transtion4",
+        "categorySelected": "Travel",
+        "paymentSelected": "Recieve Payment",
+        "amount": "3000",
+        "transdate": "2019-03-23",
+        "id": 4
+      },
+      {
+        "description": "transaction5",
+        "categorySelected": "Utility Bills",
+        "paymentSelected": "Make Payment",
+        "amount": "5000",
+        "transdate": "2019-03-23",
+        "id": 7
+      },
+      {
+        "description": "for others",
+        "categorySelected": "Misc.",
+        "paymentSelected": "Recieve Payment",
+        "amount": "3000",
+        "transdate": "2019-03-23",
+        "id": 8
+      },
+      {
+        "description": "gfghfh",
+        "categorySelected": "Travel",
+        "paymentSelected": "Recieve Payment",
+        "amount": "9000",
+        "transdate": "2019-03-06",
+        "id": 9
+      },
+      {
+        "description": "balance transfer",
+        "categorySelected": "Utility Bills",
+        "paymentSelected": "Recieve Payment",
+        "amount": "10000",
+        "transdate": "2019-03-23",
+        "totalbalance": 10000,
+        "id": 10
+      },
+      {
+        "description": "testTransaction",
+        "categorySelected": "Travel",
+        "paymentSelected": "Recieve Payment",
+        "amount": "1000",
+        "transdate": "2019-03-12",
+        "totalbalance": 0,
+        "id": 11
+      },
+      {
+        "description": "trran3",
+        "categorySelected": "Loans",
+        "paymentSelected": "Recieve Payment",
+        "amount": "1000",
+        "transdate": "2019-03-12",
+        "totalbalance": 0,
+        "id": 12
+      },
+      {
+        "description": "for electroc",
+        "categorySelected": "Utility Bills",
+        "paymentSelected": "Recieve Payment",
+        "amount": "1000",
+        "transdate": "2019-03-25",
+        "totalbalance": 0,
+        "id": 13
+      },
+      {
+        "description": "for electroc",
+        "categorySelected": "Utility Bills",
+        "paymentSelected": "Recieve Payment",
+        "amount": "1000",
+        "transdate": "2019-03-25",
+        "totalbalance": 0,
+        "id": 14
+      },
+      {
+        "description": "for electroc",
+        "categorySelected": "Utility Bills",
+        "paymentSelected": "Recieve Payment",
+        "amount": "1000",
+        "transdate": "2019-03-25",
+        "totalbalance": 0,
+        "id": 15
+      },
+      {
+        "description": "transaction others",
+        "categorySelected": "Shopping",
+        "paymentSelected": "Recieve Payment",
+        "amount": "1000",
+        "transdate": "2019-03-25",
+        "totalbalance": 0,
+        "id": 16
+      },
+      {
+        "description": "transaction detail",
+        "categorySelected": "Loans",
+        "paymentSelected": "Make Payment",
+        "amount": "32000",
+        "transdate": "2019-03-25",
+        "totalbalance": 32000,
+        "id": 17
+      }
+    ];
     this.columnDefs = [
       { headerName: "Id", field: "id" , sortable: true, filter: true },
       { headerName: "description", field: "description" , sortable: true, filter: true },

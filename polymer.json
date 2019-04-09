@@ -7,8 +7,9 @@
   ],
   "extraDependencies": [
     "manifest.json",
-    "./node_modules/@webcomponents/webcomponentsjs/**",
+    "./node_modules/@webcomponents/webcomponents.js/**",
     "./node_modules/web-animations-js/web-animations-next-lite.min.js",
+    "./node_modules/ag-grid-community/ag-grid-community.js",
     "config.js"
   ],
   "npm": true,

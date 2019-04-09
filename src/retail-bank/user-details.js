@@ -12,10 +12,12 @@ import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 
 class UserDetails extends PolymerElement {
 
-// ready(){
-//   super.ready();
-//   this.userinfo =localStorage.getItem("username");
-// }
+ready(){
+  super.ready();
+  this.userinfo =JSON.parse(sessionStorage.getItem("username")) ;
+    
+  console.log(this.userinfo);
+}
 static get properties() {
         return {
           userinfo:{
@@ -37,6 +39,16 @@ static get properties() {
           totalbalance:{
             type: Number,
             value :0
+        },
+        role:{
+          type: String
+        },
+        accountNumber:{
+          type: String
+        },
+        
+        balance:{
+          type:String
         }
 
         };
@@ -77,14 +89,15 @@ _handleTransaction(){
       </style>
 
      <p>Welcome [[userValue]] </p>
-     <p>userInfo: {{user-info}}</p>
+     <p>Role: [[userinfo.role]]</p>
+     <p>accountNumber: [[userinfo.accountNumber]]</p>
      <div class="card">
      <label> Account Number</label>
-     <input type ="text" name= "accntHolder" id="accntHolder" value="{{accntHolder}}" disabled/>
+     <input type ="text" name= "accntHolder" id="accntHolder" value="[[userinfo.accountNumber]]" disabled/>
      <br/>
      <label> Balance</label>
 
-     <input type ="text" name= "totalBalance" id="totalBalance" value="{{totalBalance}}Rs"  disabled/>
+     RS:/<input type ="text" name= "totalBalance" id="totalBalance" value="[[userinfo.balance]]"  disabled/>
         <br/>
         <br/>
      <!--<paper-button class="handleUpdate-button" raised on-click="_handleUpdateDetail"> Update Details </paper-button> -->
