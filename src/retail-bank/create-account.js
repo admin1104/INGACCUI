@@ -55,8 +55,8 @@ createAcntresponse(event){
        "pan": this.pan, 
        "accountType": this.accountType,"branchName": this.branchName};
       ajaxuser.body = obj;
-      alert('Account Success Fully Created!');
-      //this.$.ajaxUser.generateRequest(); 
+      //alert('Account Success Fully Created!');
+      this.$.ajaxUser.generateRequest(); 
   }
   static get template() {
     return html`
