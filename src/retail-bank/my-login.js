@@ -14,55 +14,102 @@ class MyLogin extends PolymerElement {
       password:{
         type: String,
        
+      },
+      userinfo:{
+
       }
     }
   }
 
-  Login(){
+   _handleLogin(event){
+    //  var status = event.detail;
+    //  if(status===1){
+    //    sessionStorage.setItem('username',this.userName);
+    //    this.dispatchEvent(new CustomEvent('userdetails', 
+    //    {bubbles: true, composed: true, detail: {checkUser: true}}));
+    //    alert('Login successfully');
+    //  }
+
     // if(this.$.loginForm.validate()){
-       var ajaxLogin = this.$.ajaxLogin;
-       //let objUser = {"userName":this.userName, "password": this.password};
-       //console.log(objUser);
-       ajaxLogin.method="post";
-       ajaxLogin.body= {"userName":this.userName, "password": this.password};
-       ajaxLogin.generateRequest();      
-     //}
+      var ajaxLogin = this.$.ajaxLogin;
+      //let objUser = {"userName":this.userName, "password": this.password};
+      //console.log(objUser);
+      ajaxLogin.url = config.baseUrl + "/api/v1/login";
+      ajaxLogin.method="post";
+      ajaxLogin.body= {"userName":this.userName, "password": this.password};
+      ajaxLogin.generateRequest();      
+     
+     
    }
- 
+
    loginCredential(event){
-     var status = event.detail.response.status;
-     if(status==="success"){
-       sessionStorage.setItem('username',this.userName);
-       this.dispatchEvent(new CustomEvent('userdetails', 
-       {bubbles: true, composed: true, detail: {checkUser: true}}));
-       alert('Login successfully');
-     }
-     this.$.loginForm.reset();
-     this.set('route.path', '/courselist');
-   }
+     let status = {};
+     this.userinfo = event.detail.response;
+     let user =status.role;
+     let acnt = status.accountNumber;
+     let acntHolder= status.accountHolderName;
+     let balance= status.balance;
+    
+    if(status==="success"){
+
+      sessionStorage.setItem('username',this.userinfo);
+      // this.dispatchEvent(new CustomEvent('userdetails', 
+      // {bubbles: true, composed: true, detail: {checkUser: true}}));
+      alert('Login successfully' ,"role:",user,"accountNumber:" ,acnt,"Holder:", acntHolder,"balance:",balance);
+    }
+    
+    this.dispatchEvent(new CustomEvent('userinfo', 
+      {bubbles: true, composed: true, detail: {"userinfo": this.userinfo}}));
+    this.$.loginForm.reset();
+    this.set('route.path', '/userdetails');
+  }
  
   static get template() {
     return html`
-    <style include="shared-styles">
-    :host {
-      display: block;
-      padding: 10px;
-    }
-  </style>
+    <style>
+        .login-button{
+          margin-left: 563px;
+          background-color: #f48700;
+          color: white;
+          font-family: sans-serif; 
+        } 
+        .btnAddPet{
+          float: right;
+          bottom: 46px;
+        }
+       </style>
   <div class="card">        
     <h1>Login</h1>
-    <iron-ajax id="ajaxLogin"
-             url="http://localhost:3000/users/rest/login"
+    <iron-ajax id="ajaxLogin"            
              method:"post"
              handle-as="json"
              content-type="application/json"
              body=[[objUser]]                  
              on-response="loginCredential"></iron-ajax>
+
+
     <iron-form id=loginForm>
     <form>
-    <paper-input always-float-label label="User Name" name="userName" value={{userName}}></paper-input>
-    <paper-input type="password" always-float-label label="Password" name="password" value={{password}}></paper-input>
-    <paper-button raised class="indigo" on-click="Login">Login</paper-button       
+    <div class="card"> 
+    <paper-input 
+      type="text"
+      auto-validate required 
+      label="User Name"
+      name="userName"
+      value={{userName}}
+      error-message="User Name is Required!"
+      ></paper-input>
+
+    <paper-input
+      type="password" 
+      label="password"
+      name="password"
+      value={{password}}
+      auto-validate required
+      error-message="password is Required"></paper-input>
+
+    <paper-button class="login-button" raised on-click="_handleLogin"> Login </paper-button>
+    </div>
     </form>
     </iron-form>
   </div>

@@ -1,5 +1,5 @@
 {
-  "name": "my-course-mongodb",
+  "name": "retail-bank",
   "dependencies": {
     "@polymer/app-layout": "^3.0.2",
     "@polymer/app-route": "^3.0.2",
@@ -19,6 +19,8 @@
     "@vaadin/vaadin-accordion": "^1.0.0",
     "@vaadin/vaadin-date-picker": "^3.3.2",
     "@vaadin/vaadin-grid": "^5.3.3",
+    "ag-grid-community": "^20.2.0",
+    "ag-grid-polymer": "^20.2.0",
     "d3": "^5.9.2",
     "web-animations-js": "^2.3.1"
   },

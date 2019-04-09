@@ -40,6 +40,18 @@ setRootPath(MyAppGlobals.rootPath);
  * @polymer
  */
 class RetailBank extends PolymerElement {
+
+  ready(){
+    super.ready();
+    window.addEventListener('userinfo', function(e){
+      console.log('EVENT - ',e);
+      if(e.detail.userinfo){
+        this.userinfo=e.detail.userinfo;
+      }
+    })
+  }
+  
+
   static get template() {
     return html`
     <style>
@@ -73,7 +85,7 @@ class RetailBank extends PolymerElement {
       font-weight: bold;
     }
   </style>
-  <app-location route="{{route}}" url-space-regex="^[[rootPath]]">
+  <app-location route="{{route}}" url-space-regex="^[[rootPath]]"  use-hash-as-path>
   </app-location>
   <app-route route="{{route}}" pattern="[[rootPath]]:page" data="{{routeData}}" tail="{{subroute}}">
   </app-route>
@@ -83,8 +95,11 @@ class RetailBank extends PolymerElement {
       <app-toolbar>Menu</app-toolbar>
       <iron-selector selected="[[page]]" attr-for-selected="name"
        class="drawer-list" role="navigation">
-        <a name="mylogin" route="{{route}}" href="[[rootPath]]mylogin">mylogin</a>
-        <a name="createaccount" route="{{route}}" href="[[rootPath]]createaccount">createaccount</a>
+        <a name="mylogin" route="{{route}}" href="#/mylogin">Login</a>
+        <a name="userdetails" route="{{route}}" href="#/userdetails">User Summary</a>
+        <a name="updatedetail" route="{{route}}" href="#/updatedetail">Update User Detail</a>
+        <a name="createaccount" route="{{route}}" href="#/createaccount">Create Account</a>
+        <a name="transactionlist" route="{{route}}" href="#/transactionlist"></a>
         
        
       </iron-selector>
@@ -98,8 +113,12 @@ class RetailBank extends PolymerElement {
         </app-toolbar>
       </app-header>
       <iron-pages selected="[[page]]" attr-for-selected="name" role="main">
+        
         <my-login route="{{route}}" name="mylogin"></my-login>
+        <user-details  route="{{route}}" name="userdetails"></user-details>
+        <update-detail  route="{{route}}" name="updatedetail" user-info = "{{userinfo}}"></update-detail>
         <create-account route="{{route}}" name="createaccount"></create-account>
+        <transaction-list route="{{route}}" name="transactionlist"></transaction-list>
         <not-found name="view404"></not-found>
       </iron-pages>
     </app-header-layout>
@@ -114,6 +133,10 @@ return {
     reflectToAttribute: true,
     observer: '_pageChanged'
   },
+  userCheck: {
+    type: Boolean,
+    value : false,   
+  } , 
   routeData: Object,
   subroute: Object
 };
@@ -132,7 +155,7 @@ _routePageChanged(page) {
  // Show 'view1' in that case. And if the page doesn't exist, show 'view404'.
  if (!page) {
   this.page = 'mylogin';
-} else if (['mylogin','createaccount'].indexOf(page) !== -1) {
+} else if (['mylogin','userdetails','createaccount','updatedetail','transactionlist'].indexOf(page) !== -1) {
   this.page = page;
 } else {
   this.page = 'view404';
@@ -158,7 +181,15 @@ _pageChanged(page) {
     case 'createaccount':
       import('./create-account.js');
       break;
-    case 'view404':
+      case 'userdetails':
+      import('./user-details.js');
+      break;
+      case 'updatedetail':
+      import('./update-detail.js');
+      break;
+      case 'transactionlist':
+      import('./transaction-list.js');
+      case 'view404':
       import('./my-view404.js');
       break;
 }
